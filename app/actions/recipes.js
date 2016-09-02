@@ -4,13 +4,10 @@ import Api from '../lib/api';
 export function fetchRecipes(ingredients) {
   return (dispatch, getState) => {
     const params = [
-      `ingredients=${encodeURIComponent(ingredients)}`,
-      'fillIngredients=false',
-      'limitLicense=false',
-      'number=20',
-      'ranking=1'
+      `i=${encodeURIComponent(ingredients)}`,
+      'p=1'
     ].join('&');
-    return Api.get(`/recipes/findByIngredients?${params}`)
+    return Api.get(`/api/?${params}`)
       .then((resp) => {
         dispatch(setSearchRecipes({recipes: resp}));
       })
@@ -27,8 +24,8 @@ export function setSearchRecipes({recipes}) {
   }
 }
 
-export function addRecipe() {
-  return {
-    type: types.ADD_RECIPE
-  }
-}
+// export function addRecipe() {
+//   return {
+//     type: types.ADD_RECIPE
+//   }
+// }
